@@ -2,14 +2,15 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
 )
 
-func read_file() (file_lines []int64) {
-	file, err := os.Open("input.txt")
+func read_file(file_path *string) (file_lines []int64) {
+	file, err := os.Open(*file_path)
 	if err != nil {
 		log.Fatalf("unable to open file: %v", err)
 	}
@@ -59,8 +60,11 @@ func part2_solution(txtlines []int64) (part_two_count int) {
 }
 
 func main() {
-	answer_one_count := part1_solution(read_file())
-	answer_two_count := part2_solution(read_file())
+	file_ptr := flag.String("f", "input.txt", "File to read challenge input from.")
+	flag.Parse()
+
+	answer_one_count := part1_solution(read_file(file_ptr))
+	answer_two_count := part2_solution(read_file(file_ptr))
 	fmt.Printf("Answer 1: %d\n", answer_one_count)
 	fmt.Printf("Answer 2: %d\n", answer_two_count)
 }
