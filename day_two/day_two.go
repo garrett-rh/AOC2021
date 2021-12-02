@@ -28,6 +28,7 @@ func part1_solution(txtlines []string) (count int) {
 	var amount []int
 	var horizontal int
 	var depth int
+
 	for _, line := range txtlines {
 		int1, _ := strconv.Atoi(string(line[len(line)-1])) // Takes the byte given by the last char of line & converts to string to int
 		amount = append(amount, int1)
