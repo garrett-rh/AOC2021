@@ -1,3 +1,3 @@
-module day_one
+module aoc2021
 
 go 1.17
