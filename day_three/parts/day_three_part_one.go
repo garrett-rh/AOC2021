@@ -1,6 +1,7 @@
 package day3
 
 import (
+	"aoc2021/utils"
 	"math"
 	"strconv"
 )
@@ -11,7 +12,7 @@ import (
 // Then, a 'count' is returned which represents the puzzle answer.
 func PartOneSolution(txtLines []string) (count int) {
 
-	transposedList := listTransposer(txtLines)
+	transposedList := utils.ListTransposer(txtLines)
 
 	var binaryColumn string
 	for _, arr := range transposedList {
@@ -37,22 +38,5 @@ func PartOneSolution(txtLines []string) (count int) {
 	gamma := ^epsilon & uint64((math.Pow(2, float64(len(binaryColumn))) - 1))
 
 	count = int(epsilon) * int(gamma)
-	return
-}
-
-// listTransposer takes a list and flips it on its side.
-// A list of [abc abc abc] becomes [[aaa] [bbb] [ccc]].
-func listTransposer(txtLines []string) (transposedList [][]byte) {
-
-	length := len(txtLines[0])
-	for i := 0; i < length; i++ {
-		// listItem will hold the items in the row -> column transtion
-		// using the above example, listItem will hold [aaa], then [bbb], ...
-		var listItem []byte
-		for _, line := range txtLines {
-			listItem = append(listItem, line[i])
-		}
-		transposedList = append(transposedList, listItem)
-	}
 	return
 }
